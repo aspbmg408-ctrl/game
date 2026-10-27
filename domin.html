@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thợ Săn Cổ Vật - Minesweeper</title>
+    <link rel="stylesheet" href="css/domin.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <!-- CỘT TRÁI: BÀN CỜ -->
+        <div class="main-board">
+            <div class="header">
+                <a href="index.html" class="btn-back">⬅ Hub</a>
+                <h1>KHẢO CỔ HỌC</h1>
+            </div>
+            <div id="board" class="board"></div>
+        </div>
+
+        <!-- CỘT PHẢI: BẢNG ĐIỀU KHIỂN -->
+        <div class="sidebar">
+            <h3>📊 THỐNG KÊ</h3>
+            <div class="stat-box">
+                <span class="stat-label">🚩 Mìn đã cắm:</span>
+                <span class="stat-value" id="ui-flags">0 / 10</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">🔲 Đất chưa đào:</span>
+                <span class="stat-value" id="ui-unrevealed">81</span>
+            </div>
+            <div class="stat-box highlight">
+                <span class="stat-label">💀 Nguy cơ nổ:</span>
+                <span class="stat-value" id="ui-prob">12.3%</span>
+            </div>
+
+            <!-- KHU VỰC KỸ NĂNG MỚI (POWER-UPS) -->
+            <h3 style="margin-top: 15px;">🛠️ TRANG BỊ</h3>
+            <div class="skill-box">
+                <div class="skill-desc">
+                    <strong>🛡️ Khiên Giáp: <span id="ui-armor">1</span></strong>
+                    <br><small>Đỡ 1 lần nổ mìn.</small>
+                </div>
+            </div>
+            <button id="btnScan" class="btn-skill">
+                📡 MÁY DÒ (Còn: <span id="ui-scans">2</span>)
+            </button>
+            <small class="scan-hint">Quét 1 vùng 3x3 xem có mìn không.</small>
+            
+            <button id="btnReset" class="btn-neon">🔄 ĐÀO LẠI TỪ ĐẦU</button>
+        </div>
+    </div>
+    <script src="js/domin.js"></script>
+</body>
+</html>

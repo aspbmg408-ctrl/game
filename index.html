@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Hub - Game Center</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<header class="hub-header">
+            <h1>ARCADE <span>HUB</span></h1>
+            <p>Trung tâm Giải trí & Phân tích Chiến thuật</p>
+            <!-- Thêm dòng lưu ý nhỏ này -->
+            <p class="f11-tip">💡 Mẹo: Nhấn phím <b>F11</b> để bật chế độ toàn màn hình trải nghiệm tốt nhất!</p>
+            <br>
+            <button class="btn-reset" onclick="resetStats()">🔄 Xóa lịch sử</button>
+        </header>
+<body>
+    <!-- Lớp nền hạt chuyển động -->
+    <div class="particles"></div>
+
+    <div class="hub-container">
+        <header class="hub-header">
+            <h1>ARCADE <span>HUB</span></h1>
+            <p>Trung tâm Giải trí & Phân tích Chiến thuật</p>
+            <button class="btn-reset" onclick="resetStats()">🔄 Xóa lịch sử</button>
+        </header>
+
+        <div class="game-list">
+            <!-- THẺ GAME 1: DÒ MÌN -->
+            <div class="game-card" onmouseenter="playHover()">
+                <div class="card-visual mine-bg">
+                    <h2>💣 THỢ SĂN CỔ VẬT</h2>
+                    <span class="badge">Logic & Xác suất</span>
+                </div>
+                <div class="card-body">
+                    <!-- Bảng thống kê -->
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Thắng: <span id="mine-w">0</span></div>
+                        <div class="stat-item lose">💀 Thua: <span id="mine-l">0</span></div>
+                    </div>
+                    
+                    <a href="domin.html" class="btn-play" onclick="playClick()">▶ KHỞI ĐỘNG GAME</a>
+                    
+                    <!-- Menu hướng dẫn xổ xuống -->
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn cách chơi</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Click Trái:</b> Đào đất. Nếu trúng mìn bạn sẽ thua.</li>
+                                <li><b>Click Phải:</b> Cắm cờ vào ô nghi ngờ có mìn.</li>
+                                <li><b>Con số:</b> Thể hiện số quả mìn nằm trong 8 ô lân cận nó. Dùng suy luận loại trừ để đào các ô an toàn.</li>
+                                <li><b>Trang bị:</b> Sử dụng "Máy dò" để soi trước và "Khiên" để giữ mạng.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- THẺ GAME 2: TÀU CHIẾN -->
+            <div class="game-card" onmouseenter="playHover()">
+                <div class="card-visual ship-bg">
+                    <h2>⚓ TRẬN HẢI CHIẾN</h2>
+                    <span class="badge">Đối kháng chiến thuật</span>
+                </div>
+                <div class="card-body">
+                    <!-- Bảng thống kê -->
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Thắng: <span id="ship-w">0</span></div>
+                        <div class="stat-item lose">💀 Thua: <span id="ship-l">0</span></div>
+                    </div>
+                    
+                    <a href="tauchien.html" class="btn-play" onclick="playClick()">▶ KHỞI ĐỘNG GAME</a>
+                    
+                    <!-- Menu hướng dẫn xổ xuống -->
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn cách chơi</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Giai đoạn 1:</b> Kéo thả, xoay và sắp xếp 5 con tàu của bạn lên mặt biển. Kẻ địch không thể thấy chúng.</li>
+                                <li><b>Giai đoạn 2:</b> Lần lượt nã đạn vào vùng biển của kẻ địch. Trúng (💥), Trượt (💦).</li>
+                                <li><b>Điều kiện thắng:</b> Bắn chìm toàn bộ 5 hạm đội của địch trước khi chúng làm điều tương tự với bạn.</li>
+                                <li><b>Độ khó Khó:</b> Kẻ địch sẽ dùng toán học Xác suất (Heatmap) để truy lùng bạn!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <!-- THẺ GAME 3: CỜ CARO -->
+            <div class="game-card" onmouseenter="playHover()">
+                <!-- CSS tạm dùng chung class mine-bg để có màu gradient đen xám -->
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(225,29,72,0.3), rgba(0,0,0,0.8));">
+                    <h2>⭕ CỜ CARO ❌</h2>
+                    <span class="badge">Đấu trí Đại Kiện Tướng</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Thắng: <span id="caro-w">0</span></div>
+                        <div class="stat-item lose">💀 Thua: <span id="caro-l">0</span></div>
+                    </div>
+                    
+                    <a href="caro.html" class="btn-play" onclick="playClick()">▶ KHỞI ĐỘNG GAME</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn cách chơi</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Luật chơi:</b> Xếp được 5 quân cờ liên tiếp (ngang, dọc, chéo) trước đối thủ sẽ giành chiến thắng.</li>
+                                <li><b>Cảnh báo:</b> Chế độ Đại Kiện Tướng có khả năng phân tích nước đi đa chiều, hãy cẩn trọng!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <!-- THẺ GAME 4: NEON SNAKE -->
+            <div class="game-card" onmouseenter="playHover()">
+                <!-- Màu nền tím đậm phong cách Hacker -->
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(240,0,255,0.2), rgba(0,0,0,0.9)); border-bottom-color: #f0f;">
+                    <h2 style="color: #f0f; text-shadow: 0 0 10px #f0f;">NEON SNAKE</h2>
+                    <span class="badge" style="background: #f0f; color: #000; border-color: #f0f;">Phản xạ tốc độ cao</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Kỷ lục: <span id="snake-hs">0</span></div>
+                        <div class="stat-item lose" style="color:#a9a9a9">💀 Lỗi Crash: <span id="snake-cr">0</span></div>
+                    </div>
+                    
+                    <a href="snake.html" class="btn-play" onclick="playClick()" style="background: #0ff; color: #000; box-shadow: 0 0 10px #0ff;">▶ TRUY CẬP HỆ THỐNG</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn cách chơi</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Điều khiển:</b> Dùng WASD hoặc phím mũi tên để bẻ lái luồng dữ liệu (Rắn).</li>
+                                <li><b>Mục tiêu:</b> Ăn các khối Gói Tin (hồng) để tăng điểm. Ăn càng nhiều, tốc độ chạy càng nhanh.</li>
+                                <li><b>Cảnh báo:</b> Đâm vào tường hoặc tự đâm vào đuôi sẽ gây hỏng toàn bộ hệ thống mạng.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <!-- THẺ GAME 5: FLAPPY CODE -->
+            <div class="game-card" onmouseenter="playHover()">
+                <!-- Màu nền xanh ngọc đậm phong cách Matrix -->
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(0,0,0,0.9)); border-bottom-color: #22c55e;">
+                    <h2 style="color: #22c55e; text-shadow: 0 0 10px #22c55e;">FLAPPY CODE</h2>
+                    <span class="badge" style="background: #22c55e; color: #000; border-color: #22c55e;">Độ khó ức chế</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Kỷ lục: <span id="flappy-hs">0</span></div>
+                        <div class="stat-item lose" style="color:#a9a9a9">💀 Rớt mạng: <span id="flappy-cr">0</span></div>
+                    </div>
+                    
+                    <a href="flappy.html" class="btn-play" onclick="playClick()" style="background: #10b981; color: #000; box-shadow: 0 0 10px #10b981;">▶ VƯỢT TƯỜNG LỬA</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn cách chơi</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Điều khiển:</b> Nhấn phím SPACE, Mũi tên Lên hoặc Click chuột để đẩy luồng code bay lên.</li>
+                                <li><b>Mục tiêu:</b> Lách qua các khe hở của Tường lửa (Firewall) màu đỏ.</li>
+                                <li><b>Cảnh báo:</b> Trọng lực kéo xuống rất nhanh. Chạm nhẹ vào Tường lửa hoặc chạm sàn/trần nhà = Game Over.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <!-- THẺ GAME 6: TECH STACK 2048 -->
+            <div class="game-card" onmouseenter="playHover()">
+                <!-- Màu nền Tím Cyberpunk -->
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(0,0,0,0.9)); border-bottom-color: #8b5cf6;">
+                    <h2 style="color: #c4b5fd; text-shadow: 0 0 10px #c4b5fd;">TECH STACK 2048</h2>
+                    <span class="badge" style="background: #8b5cf6; color: #fff; border-color: #a855f7;">Nâng cấp hệ thống</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Kỷ lục: <span id="2048-hs">0</span></div>
+                    </div>
+                    
+                    <a href="2048.html" class="btn-play" onclick="playClick()" style="background: #a855f7; color: #fff; box-shadow: 0 0 15px rgba(168,85,247,0.5);">▶ GHÉP CÔNG NGHỆ</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn cách chơi</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Thao tác:</b> <b>Kéo thả chuột</b> theo 4 hướng để trượt toàn bộ các khối.</li>
+                                <li><b>Luật gộp:</b> Hai khối cùng công nghệ (ví dụ HTML) khi đâm vào nhau sẽ thăng cấp thành công nghệ mới (CSS).</li>
+                                <li><b>Bản đồ:</b> Hỗ trợ 5 mức tùy chỉnh. Bản đồ càng nhỏ, càng dễ bị tắc nghẽn bộ nhớ!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <!-- THẺ GAME 7: TETRIS MATRIX -->
+            <div class="game-card" onmouseenter="playHover()">
+                <!-- Màu nền xanh Hacker -->
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(0,255,0,0.2), rgba(0,0,0,0.9)); border-bottom-color: #0f0;">
+                    <h2 style="color: #fff; text-shadow: 0 0 10px #0f0;">TETRIS <span style="color:#0f0;">MATRIX</span></h2>
+                    <span class="badge" style="background: #0f0; color: #000; border-color: #0f0;">Đa chế độ AI</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Kỷ lục: <span id="tetris-hs">0</span></div>
+                    </div>
+                    
+                    <a href="tetris.html" class="btn-play" onclick="playClick()" style="background: transparent; color: #0f0; border: 2px solid #0f0; box-shadow: 0 0 10px rgba(0,255,0,0.5);">▶ KẾT NỐI MẠNG</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn AI Matrix</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Hệ thống AI:</b> Trò chơi này không dùng thuật toán Xổ số ngẫu nhiên. Nó phân tích bề mặt lưới để thả khối "cứu rỗi" khi bạn đang nguy hiểm!</li>
+                                <li><b>Chế độ Cổ điển:</b> Dùng W,A,S,D hoặc Mũi tên để xoay, lách và rơi chốt hạ. Rơi liên tục.</li>
+                                <li><b>Chế độ 1010 Khay:</b> Cấp 3 khối. Dùng chuột ném chúng vào bàn cờ. Bàn cờ này ăn cả Hàng Dọc lẫn Hàng Ngang!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Xử lý Thống kê & m thanh -->
+    <script>
+        // 1. Tải Dữ liệu từ LocalStorage
+function loadStats() {
+    document.getElementById('mine-w').innerText = localStorage.getItem('mine_win') || 0;
+    document.getElementById('mine-l').innerText = localStorage.getItem('mine_lose') || 0;
+    document.getElementById('ship-w').innerText = localStorage.getItem('ship_win') || 0;
+    document.getElementById('ship-l').innerText = localStorage.getItem('ship_lose') || 0;
+    document.getElementById('caro-w').innerText = localStorage.getItem('caro_win') || 0;
+    document.getElementById('caro-l').innerText = localStorage.getItem('caro_lose') || 0;
+    document.getElementById('snake-hs').innerText = localStorage.getItem('snake_hs') || 0;
+    document.getElementById('snake-cr').innerText = localStorage.getItem('snake_crashes') || 0;
+    document.getElementById('flappy-hs').innerText = localStorage.getItem('flappy_hs') || 0;
+    document.getElementById('flappy-cr').innerText = localStorage.getItem('flappy_crashes') || 0;
+    document.getElementById('2048-hs').innerText = localStorage.getItem('tech2048_hs') || 0;
+    document.getElementById('tetris-hs').innerText = localStorage.getItem('tetris_hs') || 0;
+}
+
+        // 2. Xóa Dữ liệu
+        function resetStats() {
+            if(confirm('Bạn có chắc muốn xóa toàn bộ thành tích?')) {
+                localStorage.clear();
+                loadStats();
+            }
+        }
+
+        // 3. m thanh Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playHover() {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine'; osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function playClick() {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            
+            osc.type = 'square'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+        }
+
+        // Khởi động
+        loadStats();
+    </script>
+    <!-- MODAL XÚC XẮC NGẪU NHIÊN -->
+    <div id="dice-modal" class="dice-modal">
+        <div class="dice-content">
+            <span class="close-modal" onclick="closeDiceModal()">&times;</span>
+            <div class="dice-icon-anim">🎲</div>
+            <h2>HỆ THỐNG ĐANG CHỌN NGẪU NHIÊN...</h2>
+            <div id="random-game-display" class="random-display">ĐANG TÌM TRÒ CHƠI...</div>
+            <div class="dice-actions">
+                <button class="btn-reroll" onclick="startDiceSpin()">🎲 QUAY LẠI</button>
+                <!-- Đổi từ thẻ button sang thẻ a để chuyển hướng trang mượt mà -->
+                <a id="btn-accept-game" class="btn-play-now" href="#">▶ VÀO CHƠI NGAY</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NÚT XÚC XẮC NỔI (FLOATING DICE BUTTON) -->
+    <button class="floating-dice-btn" onclick="openDiceModal()" title="Chọn game ngẫu nhiên!">
+        🎲
+    </button>
+    <script>
+        // Danh sách toàn bộ các trò chơi trong Hub
+const hubGames = [
+    { name: "💣 Thợ Săn Cổ Vật (Dò Mìn)", url: "domin.html" },
+    { name: "⚓ Trận Hải Chiến (Bắn Tàu)", url: "tauchien.html" },
+    { name: "⭕ Cờ Caro (AI Đại Kiện Tướng)", url: "caro.html" },
+    { name: "🐍 Neon Snake (Rắn Săn Mồi)", url: "snake.html" },
+    { name: "🚀 Flappy Code (Vượt Tường Lửa)", url: "flappy.html" },
+    { name: "🧠 Tech Stack 2048", url: "2048.html" },
+    { name: "💻 Tetris Matrix", url: "tetris.html" }
+];
+
+let spinInterval = null;
+
+function openDiceModal() {
+    document.getElementById('dice-modal').style.display = 'flex';
+    startDiceSpin();
+}
+
+function closeDiceModal() {
+    document.getElementById('dice-modal').style.display = 'none';
+    if(spinInterval) clearInterval(spinInterval);
+}
+
+function startDiceSpin() {
+    if(spinInterval) clearInterval(spinInterval);
+    
+    let displayBox = document.getElementById('random-game-display');
+    let playBtn = document.getElementById('btn-accept-game');
+    playBtn.style.pointerEvents = 'none';
+    playBtn.style.opacity = '0.5';
+    
+    let counter = 0;
+    // Hiệu ứng nhấp nháy tên game liên tục trong 1.2 giây
+    spinInterval = setInterval(() => {
+        let randomIndex = Math.floor(Math.random() * hubGames.length);
+        displayBox.innerText = hubGames[randomIndex].name;
+        
+        // Âm thanh lắc xúc xắc giả lập
+        if(counter % 3 === 0) playHover();
+        
+        counter++;
+        if (counter > 15) { // Dừng lại sau 15 lần đổi
+            clearInterval(spinInterval);
+            let finalGame = hubGames[Math.floor(Math.random() * hubGames.length)];
+            displayBox.innerText = finalGame.name;
+            playBtn.href = finalGame.url;
+            playBtn.style.pointerEvents = 'auto';
+            playBtn.style.opacity = '1';
+            
+            // Âm thanh chốt kết quả
+            playClick();
+        }
+    }, 80);
+}
+    </script>
+</body>
+</html>

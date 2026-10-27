@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ Caro - Trí tuệ AI</title>
+    <link rel="stylesheet" href="css/caro.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ Hub</a>
+            <h1>⭕ CỜ CARO ❌</h1>
+            <div class="header-controls">
+                <span id="turn-indicator" class="turn-box">Đang chờ...</span>
+            </div>
+        </div>
+
+        <div id="menu-screen" class="menu-screen">
+            <h2>CHỌN ĐỐI THỦ</h2>
+            <button class="btn-mode easy" onclick="startGame('EASY')">🟢 Bot Tập sự (Biết phòng thủ cơ bản)</button>
+            <button class="btn-mode hard" onclick="startGame('HARD')">🔴 Bot Đại Kiện Tướng (Heuristic AI)</button>
+        </div>
+
+        <div id="game-screen" class="game-screen" style="display: none;">
+            <div class="layout-container">
+                <!-- BÀN CỜ -->
+                <div class="board-area">
+                    <div id="board" class="board"></div>
+                </div>
+
+                <!-- BẢNG ĐIỀU KHIỂN -->
+                <div class="sidebar">
+                    <h3 class="title-panel">THÔNG TIN TRẬN ĐẤU</h3>
+                    <div class="player-info">
+                        <div class="p-card">
+                            <span class="symbol x">❌</span>
+                            <span class="name">BẠN</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="p-card">
+                            <span class="symbol o">⭕</span>
+                            <span class="name">AI BOT</span>
+                        </div>
+                    </div>
+                    
+                    <button id="btn-restart" class="btn-action">🔄 Chơi ván mới</button>
+                    
+                    <div class="history-log">
+                        <div class="log-header">📜 Phân tích nước đi</div>
+                        <div id="log-content" class="log-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/caro.js"></script>
+</body>
+</html>

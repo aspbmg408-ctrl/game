@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tetris Matrix - Giao thức xếp khối</title>
+    <link rel="stylesheet" href="css/tetris.css">
+</head>
+<body>
+    <!-- Nền mưa ma trận (Matrix Rain) -->
+    <div class="matrix-bg" id="matrix-bg"></div>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ HUB</a>
+            <h1>TETRIS <span>MATRIX</span></h1>
+        </div>
+        
+        <div class="controls-panel">
+            <div class="score-box">ĐIỂM CHÍNH<br><span id="current-score" class="neon-text">0</span></div>
+            
+            <div class="mode-selector">
+                <select id="game-mode" onchange="changeMode()">
+                    <option value="CLASSIC">CHẾ ĐỘ CỔ ĐIỂN (Rơi xuống)</option>
+                    <option value="TRAY">CHẾ ĐỘ KHAY ĐẶT (1010 Puzzle)</option>
+                </select>
+                <button id="btn-restart" onclick="initGame()">🔄 KHỞI TẠO LẠI</button>
+            </div>
+            
+            <div class="score-box">KỶ LỤC<br><span id="high-score" class="neon-text">0</span></div>
+        </div>
+
+        <div class="main-layout">
+            <!-- Bàn cờ chính -->
+            <div class="board-container">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                
+                <div id="game-overlay" class="overlay">
+                    <h2 id="overlay-text">KẾT NỐI HỆ THỐNG</h2>
+                    <button id="btn-start" onclick="initGame()">▶ RUN SCRIPT</button>
+                </div>
+            </div>
+
+            <!-- Khu vực Khay chứa (Cho chế độ 2) hoặc Khối tiếp theo (Chế độ 1) -->
+            <div class="side-panel">
+                <h3 id="side-title">KHỐI TIẾP THEO</h3>
+                <div id="tray-container" class="tray-container">
+                    <!-- Sẽ hiển thị 1 canvas nếu là Classic, hoặc 3 canvas nếu là Tray mode -->
+                    <canvas id="tray-1" width="100" height="100" class="tray-slot"></canvas>
+                    <canvas id="tray-2" width="100" height="100" class="tray-slot"></canvas>
+                    <canvas id="tray-3" width="100" height="100" class="tray-slot"></canvas>
+                </div>
+                
+                <div class="smart-ai-status">
+                    <span>🧠 AI Generator: <b style="color:#0f0">ONLINE</b></span>
+                    <p>Thuật toán đang phân tích địa hình để cấp khối hợp lý nhất.</p>
+                </div>
+                
+                <div class="controls-hint" id="controls-hint">
+                    [W/Mũi tên lên]: Xoay<br>[A/D]: Di chuyển<br>[S]: Rơi nhanh<br>[SPACE]: Rơi chốt hạ
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/tetris.js"></script>
+</body>
+</html>

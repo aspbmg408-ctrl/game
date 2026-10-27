@@ -1,0 +1,27 @@
+* { box-sizing: border-box; user-select: none; }
+body { background: #050510; color: #fff; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden;}
+
+/* Hiệu ứng sọc nhiễu của màn hình máy tính cũ (CRT) */
+.crt-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 2px, 3px 100%; pointer-events: none; z-index: 100;}
+
+.game-wrapper { background: rgba(10, 10, 25, 0.8); padding: 25px; border-radius: 8px; border: 2px solid #0ff; box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); width: 460px; z-index: 10; position: relative;}
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px dashed #0ff; padding-bottom: 15px;}
+.header h1 { margin: 0; font-size: 26px; color: #f0f; text-shadow: 0 0 10px #f0f; letter-spacing: 1px;}
+.header h1 span { color: #0ff; text-shadow: 0 0 10px #0ff; }
+.btn-back { color: #0ff; text-decoration: none; border: 1px solid #0ff; padding: 6px 12px; font-weight: bold; background: rgba(0,255,255,0.1); transition: 0.3s;}
+.btn-back:hover { background: #0ff; color: #000; box-shadow: 0 0 15px #0ff;}
+
+.stats-panel { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 18px; font-weight: bold;}
+.score-box { color: #0ff; text-shadow: 0 0 5px #0ff; }
+.score-box.high { color: #f0f; text-shadow: 0 0 5px #f0f; }
+
+.canvas-container { position: relative; width: 400px; height: 400px; margin: 0 auto; border: 2px solid #333; box-shadow: 0 0 20px rgba(0, 255, 255, 0.1); background: #000; overflow: hidden;}
+/* Nền Canvas là lưới ma trận */
+canvas { display: block; background: linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; }
+
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.overlay h2 { color: #f0f; text-shadow: 0 0 10px #f0f; margin-bottom: 20px; text-align: center; font-size: 22px;}
+#btn-start { background: rgba(0,255,255,0.1); color: #0ff; border: 2px solid #0ff; padding: 12px 20px; font-size: 14px; font-weight: bold; font-family: 'Courier New', Courier, monospace; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 10px rgba(0,255,255,0.2);}
+#btn-start:hover { background: #0ff; color: #000; box-shadow: 0 0 20px #0ff; }
+
+.controls-hint { text-align: center; margin-top: 20px; color: #555; font-size: 12px; }

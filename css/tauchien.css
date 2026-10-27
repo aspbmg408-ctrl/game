@@ -1,0 +1,112 @@
+* { box-sizing: border-box; user-select: none; }
+body { background: #0b1120; color: #f8fafc; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+
+.game-wrapper { background: #1e293b; padding: 25px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); border: 1px solid #334155; width: 1050px; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #334155; padding-bottom: 15px;}
+.header h1 { margin: 0; font-size: 24px; color: #38bdf8; letter-spacing: 2px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);}
+.btn-back { color: #fff; text-decoration: none; background: #475569; padding: 8px 15px; border-radius: 6px; font-weight: bold; transition: 0.2s;}
+.btn-back:hover { background: #64748b; }
+.header-controls { display: flex; gap: 15px; align-items: center;}
+.turn-box { background: #0284c7; padding: 6px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 0 10px #0284c7;}
+.btn-restart { background: #f59e0b; color: #000; border: none; padding: 6px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+.btn-restart:hover { background: #fbbf24; }
+
+/* Menu */
+.menu-screen { text-align: center; padding: 60px 0; }
+.btn-mode { display: block; width: 400px; margin: 20px auto; padding: 18px; font-size: 16px; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s;}
+.btn-mode.normal { background: #059669; } .btn-mode.normal:hover { background: #10b981; transform: scale(1.05);}
+.btn-mode.hard { background: #be123c; } .btn-mode.hard:hover { background: #e11d48; transform: scale(1.05); box-shadow: 0 0 20px #e11d48;}
+
+/* Layout Bàn Cờ + Tọa độ */
+.layout-container { display: flex; justify-content: space-between; gap: 40px; }
+.player-area, .enemy-area { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.title-green { color: #4ade80; margin-bottom: 10px; }
+.title-red { color: #f87171; margin-bottom: 10px; }
+
+.board-wrapper { display: grid; grid-template-columns: 25px auto; grid-template-rows: 25px auto; gap: 5px; }
+.coord-top { grid-column: 2; display: flex; color: #94a3b8; font-weight: bold; font-size: 14px;}
+.coord-top span { width: 35px; text-align: center; margin-right: 2px;}
+.coord-left { grid-row: 2; display: flex; flex-direction: column; color: #94a3b8; font-weight: bold; font-size: 14px; text-align: center; margin-top: 3px;}
+.coord-left span { height: 35px; line-height: 35px; margin-bottom: 2px;}
+
+.board { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: repeat(10, 35px); gap: 2px; background: #0f172a; padding: 3px; border: 3px solid #334155; border-radius: 5px;}
+.relative-board { position: relative; }
+.disabled-board { pointer-events: none; filter: brightness(0.6); }
+
+.cell { width: 35px; height: 35px; border-radius: 2px; cursor: crosshair; transition: 0.2s; position: relative;
+    background: linear-gradient(45deg, #023e8a, #0077b6, #00b4d8, #023e8a);
+    background-size: 300% 300%; animation: oceanWave 8s ease infinite;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+@keyframes oceanWave { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+
+#enemy-board .cell:hover { border: 2px solid #fff; transform: scale(1.15); z-index: 10; box-shadow: 0 0 12px #fff;}
+
+/* THIẾT KẾ CÁC LOẠI TÀU BẰNG CSS ART */
+.dock { background: #0f172a; border: 2px dashed #475569; padding: 15px; margin-top: 15px; border-radius: 8px; width: 100%;}
+.dock-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; min-height: 50px;}
+.guide-text { font-size: 13px; color: #94a3b8; margin: 0 0 15px 0; text-align: center;}
+
+.ship-drag {
+    --size: calc(35px * var(--len) + 2px * (var(--len) - 1));
+    cursor: grab; position: relative; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6); transition: transform 0.1s; z-index: 5;
+}
+.ship-drag:active { cursor: grabbing; transform: scale(1.05); }
+.ship-placed { position: absolute; top: 0; left: 0; margin: 3px; }
+.ship-drag[data-dir="0"] { width: var(--size); height: 35px; }
+.ship-drag[data-dir="1"] { width: 35px; height: var(--size); }
+
+/* Tạo hình từng con tàu */
+/* Tàu Sân Bay (Carrier) - Mái phẳng có đường băng */
+.carrier { background: #334155; border-radius: 4px; border: 2px solid #475569;}
+.carrier[data-dir="0"]::before { content:''; position: absolute; width: 80%; height: 2px; background: repeating-linear-gradient(to right, #fff 0, #fff 10px, transparent 10px, transparent 20px); }
+.carrier[data-dir="1"]::before { content:''; position: absolute; height: 80%; width: 2px; background: repeating-linear-gradient(to bottom, #fff 0, #fff 10px, transparent 10px, transparent 20px); }
+
+/* Thiết Giáp Hạm (Battleship) - Có ụ pháo to */
+.battleship { background: linear-gradient(#475569, #334155); border-radius: 20px; border: 2px solid #64748b;}
+.battleship::before, .battleship::after { content: ''; position: absolute; width: 12px; height: 12px; background: #1e293b; border-radius: 50%; border: 2px solid #94a3b8; }
+.battleship[data-dir="0"]::before { left: 15px; } .battleship[data-dir="0"]::after { right: 15px; }
+.battleship[data-dir="1"]::before { top: 15px; } .battleship[data-dir="1"]::after { bottom: 15px; }
+
+/* Tàu Ngầm (Submarine) - Nhỏ, đen, 1 ống nhòm kính tiềm vọng */
+.submarine { background: #1e293b; border-radius: 30px; border: 2px solid #475569;}
+.submarine::after { content: ''; position: absolute; width: 10px; height: 10px; background: #f87171; border-radius: 50%; box-shadow: 0 0 5px red;}
+
+/* Tàu Tuần Dương (Cruiser) - Hình thoi nhọn */
+.cruiser { background: #475569; clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%); }
+.cruiser[data-dir="1"] { clip-path: polygon(50% 0, 100% 10%, 100% 90%, 50% 100%, 0 90%, 0 10%); } /* <-- Đã sửa lại tọa độ không bị chéo góc */
+
+/* Tàu Khu Trục (Destroyer) - Dẹp, tốc độ */
+.destroyer { background: #64748b; border-radius: 10px; border: 2px solid #cbd5e1;}
+
+/* Hiệu ứng kéo thả */
+.drag-valid { background: #10b981 !important; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);}
+.drag-invalid { background: #ef4444 !important; }
+
+/* Tương tác Menu Dock */
+.dock-actions { display: flex; gap: 10px; margin-top: 15px;}
+.btn-sub { background: #475569; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; flex: 1; font-weight: bold;}
+.btn-action { background: #dc2626; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; flex: 2; font-weight: bold; transition: 0.3s;}
+.btn-action:not([disabled]) { background: #ef4444; animation: pulse 1.5s infinite; }
+.btn-action[disabled] { opacity: 0.5; cursor: not-allowed; }
+@keyframes pulse { 0% {box-shadow: 0 0 0 0 rgba(239,68,68,0.7);} 70% {box-shadow: 0 0 0 8px rgba(239,68,68,0);} 100% {box-shadow: 0 0 0 0 rgba(239,68,68,0);} }
+
+/* HIỆU ỨNG CHIẾN ĐẤU CẢI TIẾN */
+.cell.hit { background: #ef4444; animation: shake 0.3s; border: 2px solid #7f1d1d; z-index: 10; }
+.cell.hit::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle, #fbbf24 0%, transparent 70%); animation: explode 0.5s ease-out; pointer-events: none;}
+@keyframes explode { 0% {transform: scale(0.5); opacity: 1;} 100% {transform: scale(2); opacity: 0;} }
+@keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-3px);} 75% {transform: translateX(3px);} }
+
+.cell.miss { background: #94a3b8; opacity: 0.8; z-index: 10; }
+.cell.miss::after { content: 'O'; position: absolute; top: 5px; left: 10px; font-weight: bold; color: rgba(255,255,255,0.5); animation: ripple 0.5s ease-out; }
+@keyframes ripple { 0% {transform: scale(0.1); opacity: 1;} 100% {transform: scale(2); opacity: 0;} }
+
+/* LOG LỊCH SỬ */
+.history-log { background: #0f172a; border: 2px solid #334155; border-radius: 8px; margin-top: 15px; width: 100%; height: 140px; display: flex; flex-direction: column;}
+.log-header { background: #1e293b; padding: 5px; text-align: center; font-weight: bold; font-size: 13px; color: #94a3b8; border-bottom: 1px solid #334155;}
+.log-content { flex: 1; overflow-y: auto; padding: 10px; font-size: 13px; display: flex; flex-direction: column; gap: 5px;}
+.log-p { color: #4ade80; } /* Lượt Player */
+.log-e { color: #f87171; } /* Lượt Enemy */
+.log-hit { font-weight: bold; text-shadow: 0 0 5px currentColor; }
+.ship-status { background: #1e293b; padding: 8px; text-align: center; font-size: 13px; color: #cbd5e1; border-top: 1px solid #334155;}

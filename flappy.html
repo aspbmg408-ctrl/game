@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Flappy Code: Vượt Tường Lửa</title>
+    <link rel="stylesheet" href="css/flappy.css">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ HUB</a>
+            <h1>FLAPPY <span>CODE</span></h1>
+        </div>
+        
+        <div class="stats-panel">
+            <div class="score-box">ĐIỂM: <span id="current-score">0</span></div>
+            <div class="score-box high">KỶ LỤC: <span id="high-score">0</span></div>
+        </div>
+        
+        <div class="canvas-container">
+            <!-- Canvas dạng dọc phù hợp với Flappy Bird -->
+            <canvas id="gameCanvas" width="350" height="500"></canvas>
+            
+            <div id="game-overlay" class="overlay">
+                <h2 id="overlay-text">SẴN SÀNG VƯỢT RÀO</h2>
+                <button id="btn-start">🚀 NHẢY (SPACE / CLICK)</button>
+            </div>
+        </div>
+        
+        <div class="controls-hint">
+            Nhấn <b>[SPACE]</b>, <b>[MŨI TÊN LÊN]</b> hoặc <b>Click chuột</b> để bay
+        </div>
+    </div>
+    <script src="js/flappy.js"></script>
+</body>
+</html>

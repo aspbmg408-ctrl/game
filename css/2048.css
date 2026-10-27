@@ -1,0 +1,59 @@
+* { box-sizing: border-box; user-select: none; }
+body { background: #0f172a; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden;}
+
+/* Nền mờ ma trận */
+.particles { position: fixed; width: 100%; height: 100%; background: radial-gradient(circle at center, #1e293b 0%, #020617 100%); z-index: -1;}
+
+.game-wrapper { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; border: 2px solid #8b5cf6; box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); width: 500px;}
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px dashed #8b5cf6; padding-bottom: 15px;}
+.header h1 { margin: 0; font-size: 24px; color: #fff; letter-spacing: 1px;}
+.header h1 span { color: #a855f7; text-shadow: 0 0 10px #a855f7; }
+.btn-back { color: #c4b5fd; text-decoration: none; border: 1px solid #8b5cf6; padding: 6px 12px; border-radius: 6px; font-weight: bold; background: rgba(139,92,246,0.1); transition: 0.3s;}
+.btn-back:hover { background: #8b5cf6; color: #fff; box-shadow: 0 0 15px #8b5cf6;}
+
+.controls-panel { margin-bottom: 20px; }
+.score-container { display: flex; gap: 15px; margin-bottom: 15px;}
+.score-box { flex: 1; background: #1e293b; padding: 10px; border-radius: 8px; text-align: center; font-size: 13px; color: #94a3b8; font-weight: bold; border: 1px solid #334155;}
+.score-box span { display: block; font-size: 22px; color: #fff; margin-top: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.5);}
+
+.mode-selector { display: flex; gap: 10px; align-items: center; background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid #334155;}
+.mode-selector label { font-size: 11px; color: #94a3b8; font-weight: bold;}
+.mode-selector select { flex: 1; background: #1e293b; color: #fff; border: 1px solid #475569; padding: 5px; border-radius: 4px; outline: none; cursor: pointer;}
+#btn-restart { background: #8b5cf6; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.3s;}
+#btn-restart:hover { background: #a855f7; box-shadow: 0 0 10px #a855f7;}
+
+.canvas-container { position: relative; width: 440px; height: 440px; margin: 0 auto; background: #1e293b; border-radius: 8px; border: 4px solid #334155; overflow: hidden; padding: 5px;}
+
+/* CSS Grid động: Sẽ được JS can thiệp thay đổi số cột/dòng */
+.board { display: grid; width: 100%; height: 100%; gap: 6px; cursor: grab;}
+.board:active { cursor: grabbing; }
+
+.cell { background: #0f172a; border-radius: 6px; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 20px; transition: 0.15s ease-in-out; text-transform: uppercase;}
+.cell.empty { background: rgba(0,0,0,0.2); }
+
+/* Hiệu ứng Pop khi xuất hiện hoặc gộp */
+@keyframes pop { 0% { transform: scale(0.5); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.cell.new { animation: pop 0.2s; }
+.cell.merged { animation: pop 0.2s; box-shadow: 0 0 15px rgba(255,255,255,0.5); }
+
+/* MÀU SẮC CHO TECH STACK */
+.tech-2 { background: #e34c26; color: #fff; } /* HTML */
+.tech-4 { background: #264de4; color: #fff; } /* CSS */
+.tech-8 { background: #f0db4f; color: #000; } /* JS */
+.tech-16 { background: #61dbfb; color: #000; } /* React */
+.tech-32 { background: #68a063; color: #fff; } /* Node */
+.tech-64 { background: #3776ab; color: #fff; } /* Python */
+.tech-128 { background: #0db7ed; color: #fff; } /* Docker */
+.tech-256 { background: #326ce5; color: #fff; } /* K8s */
+.tech-512 { background: #ff9900; color: #000; } /* AWS */
+.tech-1024 { background: #f05032; color: #fff; } /* Git */
+.tech-2048 { background: #fff; color: #000; box-shadow: 0 0 20px #fff; } /* AI */
+.tech-4096 { background: #f0f; color: #fff; box-shadow: 0 0 30px #f0f; } /* AGI */
+.tech-8192 { background: #0ff; color: #000; box-shadow: 0 0 30px #0ff; } /* SKYNET */
+
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.85); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10;}
+.overlay h2 { color: #f43f5e; text-shadow: 0 0 10px #f43f5e; margin-bottom: 25px; text-align: center; font-size: 24px;}
+.overlay button { background: #8b5cf6; color: #fff; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px;}
+.overlay button:hover { background: #a855f7; box-shadow: 0 0 20px #a855f7;}
+
+.controls-hint { text-align: center; margin-top: 15px; color: #94a3b8; font-size: 13px; }

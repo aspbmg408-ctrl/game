@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Snake: Data Runner</title>
+    <link rel="stylesheet" href="css/snake.css">
+</head>
+<body>
+    <!-- Lớp lưới nhiễu màn hình CRT (Scanline) -->
+    <div class="crt-overlay"></div>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ HUB</a>
+            <h1>NEON <span>SNAKE</span></h1>
+        </div>
+        
+        <div class="stats-panel">
+            <div class="score-box">ĐIỂM: <span id="current-score">0</span></div>
+            <div class="score-box high">KỶ LỤC: <span id="high-score">0</span></div>
+        </div>
+        
+        <div class="canvas-container">
+            <!-- Canvas là nơi vẽ Rắn chuyển động 60fps -->
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            
+            <div id="game-overlay" class="overlay">
+                <h2 id="overlay-text">SẴN SÀNG KẾT NỐI</h2>
+                <button id="btn-start">🚀 KHỞI ĐỘNG LUỒNG DỮ LIỆU</button>
+            </div>
+        </div>
+        
+        <div class="controls-hint">
+            [W A S D] hoặc [Phím Mũi Tên] để điều hướng
+        </div>
+    </div>
+    <script src="js/snake.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%); color: #fff; min-height: 100vh; overflow-x: hidden; position: relative; }
+
+/* Hiệu ứng hạt nền bay lơ lửng */
+.particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; 
+    background-image: 
+        radial-gradient(#fff 1px, transparent 1px),
+        radial-gradient(#fff 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    opacity: 0.1;
+    animation: moveStars 100s linear infinite;
+}
+@keyframes moveStars { from {transform: translateY(0);} to {transform: translateY(-1000px);} }
+
+.hub-container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+.hub-header { text-align: center; margin-bottom: 50px; }
+.hub-header h1 { font-size: 46px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px; text-shadow: 0 0 20px rgba(255,255,255,0.2);}
+.hub-header h1 span { color: #e94560; text-shadow: 0 0 20px rgba(233, 69, 96, 0.6); }
+.hub-header p { color: #a9a9a9; font-size: 16px; margin-bottom: 15px;}
+.btn-reset { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #444; padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-size: 13px;}
+.btn-reset:hover { background: #e94560; border-color: #e94560; }
+/* Tinh chỉnh dòng lưu ý F11 */
+.f11-tip {
+    font-size: 13px;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+}
+.f11-tip b {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.game-list { display: flex; gap: 30px; justify-content: center; align-items: flex-start; flex-wrap: wrap;}
+
+/* Thiết kế Thẻ Game (Glassmorphism) */
+.game-card { width: 400px; background: rgba(22, 33, 62, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.game-card:hover { transform: translateY(-10px); border-color: #e94560; box-shadow: 0 15px 40px rgba(233, 69, 96, 0.3); }
+
+/* Banner của thẻ game */
+.card-visual { padding: 40px 20px; text-align: center; position: relative; border-bottom: 2px solid rgba(255,255,255,0.05);}
+.mine-bg { background: linear-gradient(135deg, rgba(212,163,115,0.2), rgba(0,0,0,0.8)); }
+.ship-bg { background: linear-gradient(135deg, rgba(2,62,138,0.3), rgba(0,0,0,0.8)); }
+
+.card-visual h2 { font-size: 24px; font-weight: 900; margin-bottom: 10px; letter-spacing: 1px;}
+.badge { background: #0f3460; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; color: #fff; border: 1px solid #1a1a2e;}
+
+/* Phần thân chứa thống kê và nút */
+.card-body { padding: 25px; }
+
+.stats-board { display: flex; justify-content: space-between; background: rgba(0,0,0,0.3); padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; font-weight: bold;}
+.stat-item.win { color: #4ade80; }
+.stat-item.lose { color: #f87171; }
+.stat-item span { font-size: 18px; }
+
+.btn-play { display: block; width: 100%; text-align: center; background: #e94560; color: white; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 16px; letter-spacing: 1px; transition: 0.3s; margin-bottom: 20px;}
+.btn-play:hover { background: #ff4757; box-shadow: 0 0 20px rgba(233, 69, 96, 0.6); transform: scale(1.02);}
+
+/* Menu Hướng dẫn (Accordion) */
+.guide-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; }
+.guide-box summary { padding: 12px; cursor: pointer; font-weight: bold; color: #a9a9a9; list-style: none; transition: 0.2s;}
+.guide-box summary:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.guide-box summary::-webkit-details-marker { display: none; }
+.guide-text { padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: #cbd5e1; line-height: 1.6; background: rgba(0,0,0,0.2);}
+.guide-text ul { padding-left: 20px; }
+.guide-text li { margin-bottom: 8px; }
+/* NÚT XÚC XẮC NỔI GÓC MÀN HÌNH */
+.floating-dice-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #e94560, #ff4757); border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 0 25px rgba(233, 69, 96, 0.6); transition: 0.3s; z-index: 999; display: flex; justify-content: center; align-items: center;}
+.floating-dice-btn:hover { transform: scale(1.15) rotate(15deg); box-shadow: 0 0 35px rgba(233, 69, 96, 0.9); }
+
+/* MODAL CHỌN NGẪU NHIÊN */
+.dice-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center;}
+.dice-content { background: #16213e; border: 2px solid #e94560; padding: 30px; border-radius: 16px; width: 380px; text-align: center; position: relative; box-shadow: 0 0 50px rgba(233, 69, 96, 0.4); animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+@keyframes modalPop { 0% {transform: scale(0.5); opacity: 0;} 100% {transform: scale(1); opacity: 1;} }
+
+.close-modal { position: absolute; top: 12px; right: 18px; font-size: 24px; color: #a9a9a9; cursor: pointer; transition: 0.2s;}
+.close-modal:hover { color: #fff; }
+
+.dice-icon-anim { font-size: 40px; margin-bottom: 10px; animation: diceRoll 1s infinite linear alternate;}
+@keyframes diceRoll { from {transform: translateY(0) rotate(0deg);} to {transform: translateY(-8px) rotate(10deg);} }
+
+.dice-content h2 { font-size: 16px; color: #a9a9a9; margin-bottom: 20px; letter-spacing: 1px;}
+
+.random-display { background: #1a1a2e; border: 2px dashed #0f3460; padding: 20px; border-radius: 10px; font-size: 20px; font-weight: bold; color: #38bdf8; margin-bottom: 25px; text-shadow: 0 0 10px rgba(56,189,248,0.5);}
+
+.dice-actions { display: flex; gap: 10px; }
+.btn-reroll { flex: 1; background: #334155; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+.btn-reroll:hover { background: #475569; }
+.btn-play-now { flex: 2; background: #e94560; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; text-decoration: none; display: flex; justify-content: center; align-items: center;}
+.btn-play-now:hover { background: #ff4757; box-shadow: 0 0 15px rgba(233,69,96,0.6); }

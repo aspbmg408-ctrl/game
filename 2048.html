@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Stack 2048 - Nâng cấp hệ thống</title>
+    <link rel="stylesheet" href="css/2048.css">
+</head>
+<body>
+    <div class="particles"></div>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ HUB</a>
+            <h1>TECH STACK <span>2048</span></h1>
+        </div>
+        
+        <div class="controls-panel">
+            <div class="score-container">
+                <div class="score-box">ĐIỂM<br><span id="current-score">0</span></div>
+                <div class="score-box">KỶ LỤC<br><span id="high-score">0</span></div>
+            </div>
+            
+            <div class="mode-selector">
+                <label>KÍCH THƯỚC BỘ NHỚ:</label>
+                <select id="grid-size" onchange="changeGridSize()">
+                    <option value="3">Siêu nhỏ (3x3 - Địa ngục)</option>
+                    <option value="4" selected>Nhỏ (4x4 - Tiêu chuẩn)</option>
+                    <option value="5">Trung bình (5x5 - Thoải mái)</option>
+                    <option value="6">To (6x6 - Dư dả)</option>
+                    <option value="8">Siêu to (8x8 - Server lớn)</option>
+                </select>
+                <button id="btn-restart" onclick="initGame()">🔄 KHỞI TẠO LẠI</button>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <!-- Bàn cờ sẽ lắng nghe sự kiện vuốt/kéo chuột -->
+            <div id="game-board" class="board"></div>
+            
+            <div id="game-overlay" class="overlay" style="display: none;">
+                <h2 id="overlay-text">SYSTEM OVERLOAD</h2>
+                <button onclick="initGame()">🚀 REBOOT</button>
+            </div>
+        </div>
+        
+        <div class="controls-hint">
+            👆 <b>Kéo chuột</b> hoặc <b>Vuốt màn hình</b> để gộp các công nghệ giống nhau!
+        </div>
+    </div>
+    <script src="js/2048.js"></script>
+</body>
+</html>

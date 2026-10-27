@@ -1,0 +1,54 @@
+* { box-sizing: border-box; user-select: none; }
+body { background: #2b2b28; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+
+.game-wrapper { display: flex; gap: 20px; background: #3d3d3b; padding: 25px; border-radius: 12px; box-shadow: 0 15px 50px rgba(0,0,0,0.9); border: 2px solid #555;}
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.header h1 { margin: 0; font-size: 22px; color: #e6b88a; text-transform: uppercase; letter-spacing: 2px;}
+.btn-back { color: #fff; text-decoration: none; background: #555; padding: 8px 12px; border-radius: 6px; font-size: 14px;}
+
+/* BÀN CỜ ĐỊA HÌNH KHẢO CỔ */
+.board { display: grid; gap: 0px; background: #222; border: 4px solid #5a4d41; border-radius: 5px; cursor: crosshair;}
+/* Chế độ đang quét máy dò */
+.board.scan-mode { cursor: wait; box-shadow: 0 0 20px #00d2d3; border-color: #00d2d3; }
+
+.cell { width: 38px; height: 38px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; border-top: 3px solid rgba(255,255,255,0.4); border-left: 3px solid rgba(255,255,255,0.4); border-bottom: 3px solid rgba(0,0,0,0.5); border-right: 3px solid rgba(0,0,0,0.5); transition: transform 0.05s, filter 0.2s; }
+.cell:active { transform: scale(0.92); border: 1px solid rgba(0,0,0,0.5); }
+
+/* Ô đã đào lộ lớp đá bên dưới */
+.cell.revealed { background: #c8d6e5 !important; border: 1px solid #a4b0be; box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
+.cell.mine { background: #ff4757 !important; }
+.cell.defused { background: #1dd1a1 !important; } /* Cứu sống bằng khiên */
+
+/* Màu số chạm khắc trên đá */
+.cell[data-mines="1"] { color: #2980b9; text-shadow: 1px 1px 0px #fff;}
+.cell[data-mines="2"] { color: #27ae60; text-shadow: 1px 1px 0px #fff;}
+.cell[data-mines="3"] { color: #c0392b; text-shadow: 1px 1px 0px #fff;}
+.cell[data-mines="4"] { color: #8e44ad; text-shadow: 1px 1px 0px #fff;}
+
+/* BẢNG ĐIỀU KHIỂN & KỸ NĂNG */
+.sidebar { width: 240px; background: #2d3436; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; gap: 12px; border: 1px solid #636e72;}
+.sidebar h3 { margin: 0; font-size: 14px; color: #ffeaa7; background: #1e272e; padding: 8px; border-radius: 4px; text-align: center;}
+.stat-box { display: flex; justify-content: space-between; align-items: center; background: #1e272e; padding: 10px; border-radius: 6px; font-size: 13px;}
+.stat-box.highlight { border: 1px solid #ff7675; color: #ff7675; font-weight: bold; }
+
+.skill-box { background: #006266; padding: 10px; border-radius: 6px; font-size: 13px; color: white; border: 1px solid #1289a7;}
+.btn-skill { padding: 12px; background: #0984e3; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 5px;}
+.btn-skill:hover { background: #74b9ff; box-shadow: 0 0 15px #0984e3;}
+.btn-skill:disabled { background: #636e72; color: #b2bec3; cursor: not-allowed; box-shadow: none;}
+.scan-hint { color: #b2bec3; font-size: 11px; text-align: center; font-style: italic; margin-top: -5px;}
+
+.btn-neon { margin-top: 10px; padding: 12px; background: #d63031; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-neon:hover { background: #ff7675; }
+
+/* HIỆU ỨNG HẠT BỤI KHI ĐÀO ĐẤT */
+.dust-particle { position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; animation: fly 0.5s ease-out forwards; z-index: 100;}
+@keyframes fly {
+    0% { opacity: 1; transform: translate(0,0) scale(1.5); }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px) rotate(-1deg); }
+    75% { transform: translateX(4px) rotate(1deg); }
+}
+.shake-effect { animation: shake 0.2s infinite; }

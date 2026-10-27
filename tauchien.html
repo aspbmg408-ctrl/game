@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bắn Tàu - Battleship 2.0</title>
+    <link rel="stylesheet" href="css/tauchien.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ Hub</a>
+            <h1>⚓ TRẬN HẢI CHIẾN</h1>
+            <div class="header-controls">
+                <span id="turn-indicator" class="turn-box">Đang bố trí...</span>
+                <button id="btn-restart" class="btn-restart" style="display: none;">🔄 Chơi Lại</button>
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH MENU -->
+        <div id="menu-screen" class="menu-screen">
+            <h2>CHỌN ĐỘ KHÓ</h2>
+            <button class="btn-mode normal" onclick="initSetup('NORMAL')">🟢 Máy tính (Bình thường)</button>
+            <button class="btn-mode hard" onclick="initSetup('HARD')">🔴 Máy tính (Khó - Toán học Mark Rober)</button>
+        </div>
+
+        <!-- MÀN HÌNH GAME -->
+        <div id="game-screen" class="game-screen" style="display: none;">
+            <div class="layout-container">
+                
+                <!-- CỘT TRÁI: NGƯỜI CHƠI -->
+                <div class="player-area">
+                    <h3 class="title-green">VÙNG BIỂN CỦA BẠN</h3>
+                    
+                    <!-- Vùng chứa bảng + Tọa độ -->
+                    <div class="board-wrapper">
+                        <div class="coord-top"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+                        <div class="coord-left"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span></div>
+                        <div id="player-board" class="board relative-board"></div>
+                    </div>
+
+                    <!-- BẾN CẢNG (DOCK) -->
+                    <div id="ship-dock" class="dock">
+                        <p class="guide-text">💡 Kéo để thả. Click vào tàu để Xoay. Có thể di chuyển tàu đã đặt.</p>
+                        <div class="dock-container">
+                            <!-- Các tàu được thiết kế riêng -->
+                            <div class="ship-drag carrier" draggable="true" id="ship-5" data-len="5" data-dir="0" data-type="carrier" style="--len: 5;"></div>
+                            <div class="ship-drag battleship" draggable="true" id="ship-4" data-len="4" data-dir="0" data-type="battleship" style="--len: 4;"></div>
+                            <div class="ship-drag cruiser" draggable="true" id="ship-3" data-len="3" data-dir="0" data-type="cruiser" style="--len: 3;"></div>
+                            <div class="ship-drag submarine" draggable="true" id="ship-2" data-len="3" data-dir="0" data-type="submarine" style="--len: 3;"></div>
+                            <div class="ship-drag destroyer" draggable="true" id="ship-1" data-len="2" data-dir="0" data-type="destroyer" style="--len: 2;"></div>
+                        </div>
+                        <div class="dock-actions">
+                            <button id="btn-auto-place" class="btn-sub">🎲 Xếp tự động</button>
+                            <button id="btn-start-battle" class="btn-action" disabled>🔥 BẮT ĐẦU</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CỘT PHẢI: KẺ ĐỊCH -->
+                <div class="enemy-area">
+                    <h3 class="title-red">VÙNG BIỂN KẺ ĐỊCH</h3>
+                    
+                    <div class="board-wrapper">
+                        <div class="coord-top"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+                        <div class="coord-left"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span></div>
+                        <div id="enemy-board" class="board disabled-board"></div>
+                    </div>
+
+                    <!-- BẢNG LỊCH SỬ NƯỚC ĐI -->
+                    <div class="history-log">
+                        <div class="log-header">📜 Nhật ký tác chiến</div>
+                        <div id="log-content" class="log-content"></div>
+                        <div class="ship-status">
+                            <span>Tàu địch còn: <b id="enemy-ships-left">5</b></span> | 
+                            <span>Tàu bạn còn: <b id="player-ships-left">5</b></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/tauchien.js"></script>
+</body>
+</html>
