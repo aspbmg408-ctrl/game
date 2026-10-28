@@ -79,9 +79,10 @@ function initGame() {
     score = 0; scoreDOM.innerText = score;
     player.y = canvas.height/2 - player.h/2;
     ai.y = canvas.height/2 - ai.h/2;
-    ai.speed = 5; 
     
-    // BẢN VÁ: Truyền số 1 để bóng ném về bên phải (phía AI) trước
+    // BẢN VÁ: Hạ tốc độ gốc của AI xuống để nó hơi "chậm chạp" lúc mới vào
+    ai.speed = 3.5; 
+    
     resetBall(1); 
     
     isPlaying = true;
@@ -128,12 +129,16 @@ function gameLoop() {
 
     // AI di chuyển (Tự động đuổi theo bóng)
     let aiCenter = ai.y + ai.h/2;
-    // Thêm độ trễ một chút để AI không hoàn hảo tuyệt đối
-    if(aiCenter < ball.y - 15) ai.y += ai.speed;
-    else if(aiCenter > ball.y + 15) ai.y -= ai.speed;
     
-    if(ai.y < 0) ai.y = 0;
-    if(ai.y > canvas.height - ai.h) ai.y = canvas.height - ai.h;
+    // BẢN VÁ LỖI LOGIC: AI chỉ thực sự "cảnh giác" khi bóng bay sang sân của nó (dx > 0)
+    if (ball.dx > 0) {
+        if(aiCenter < ball.y - 15) ai.y += ai.speed;
+        else if(aiCenter > ball.y + 15) ai.y -= ai.speed;
+    } else {
+        // Khi bóng bay về phía người chơi, AI từ từ lùi về giữa sân dưỡng sức
+        if(aiCenter < canvas.height/2 - 10) ai.y += 2;
+        else if(aiCenter > canvas.height/2 + 10) ai.y -= 2;
+    }
 
     // Bóng di chuyển
     ball.x += ball.dx;
@@ -161,7 +166,9 @@ function gameLoop() {
         
         if (hitPaddle === player) {
             score++; scoreDOM.innerText = score;
-            if(score % 5 === 0) ai.speed += 0.8; // Cứ 5 điểm AI lại khôn hơn
+            
+            // BẢN VÁ: Giảm tốc độ tiến hóa của AI (cộng 0.4 thay vì 0.8) và có mức trần
+            if(score % 5 === 0 && ai.speed < 8.5) ai.speed += 0.4; 
         }
     }
 
