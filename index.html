@@ -217,6 +217,57 @@
                     </details>
                 </div>
             </div>
+            <!-- THẺ GAME 8: SPACE INVADERS -->
+            <div class="game-card" onmouseenter="playHover()">
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(0,0,0,0.9)); border-bottom-color: #38bdf8;">
+                    <h2 style="color: #fff; text-shadow: 0 0 10px #38bdf8;">SPACE <span style="color:#38bdf8;">INVADERS</span></h2>
+                    <span class="badge" style="background: #38bdf8; color: #000; border-color: #38bdf8;">Bắn Ruồi Retro</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Kỷ lục: <span id="invaders-hs">0</span></div>
+                    </div>
+                    
+                    <a href="invaders.html" class="btn-play" onclick="playClick()" style="background: transparent; color: #38bdf8; border: 2px solid #38bdf8; box-shadow: 0 0 10px rgba(56,189,248,0.5);">▶ KÍCH HOẠT PHI THUYỀN</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn bắn súng</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Thao tác:</b> Dùng phím <b>A/D</b> hoặc <b>Mũi tên</b> để di chuyển ngang, nhấn <b>SPACE</b> để bắn đạn.</li>
+                                <li><b>Khiên chắn:</b> Dùng các khối màu xanh lá ở phía dưới để né đạn quái (khiên sẽ bị nát dần khi ăn đạn).</li>
+                                <li><b>Quy luật:</b> Càng ít quái còn sống, tốc độ di chuyển và đổ bộ của chúng càng dồn dập!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <!-- THẺ GAME 9: NEON PONG -->
+            <div class="game-card" onmouseenter="playHover()">
+                <!-- Màu nền Tím - Xanh đặc trưng -->
+                <div class="card-visual mine-bg" style="background: linear-gradient(135deg, rgba(255,0,255,0.2), rgba(0,0,0,0.9)); border-bottom-color: #f0f;">
+                    <h2 style="color: #fff; text-shadow: 0 0 10px #f0f;">NEON <span style="color:#0ff;">PONG</span></h2>
+                    <span class="badge" style="background: #f0f; color: #fff; border-color: #f0f;">Sinh Tồn Phản Xạ</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-board">
+                        <div class="stat-item win">🏆 Kỷ lục: <span id="pong-hs">0</span></div>
+                    </div>
+                    
+                    <a href="pong.html" class="btn-play" onclick="playClick()" style="background: transparent; color: #f0f; border: 2px solid #f0f; box-shadow: 0 0 10px rgba(255,0,255,0.5);">▶ KẾT NỐI SERVER</a>
+                    
+                    <details class="guide-box">
+                        <summary>📖 Hướng dẫn thi đấu</summary>
+                        <div class="guide-text">
+                            <ul>
+                                <li><b>Thao tác:</b> Kéo chuột hoặc dùng W/S để di chuyển ván trượt màu Xanh.</li>
+                                <li><b>Ghi điểm:</b> Mỗi lần đỡ bóng thành công +1 điểm. Đánh lừa được AI màu Tím +5 điểm.</li>
+                                <li><b>Vật lý:</b> Đỡ bóng ở rìa ván trượt sẽ tạo ra các cú nảy chéo góc cực hiểm. Bóng sẽ ngày càng tăng tốc!</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -236,6 +287,8 @@ function loadStats() {
     document.getElementById('flappy-cr').innerText = localStorage.getItem('flappy_crashes') || 0;
     document.getElementById('2048-hs').innerText = localStorage.getItem('tech2048_hs') || 0;
     document.getElementById('tetris-hs').innerText = localStorage.getItem('tetris_hs') || 0;
+    document.getElementById('invaders-hs').innerText = localStorage.getItem('invaders_hs') || 0;
+    document.getElementById('pong-hs').innerText = localStorage.getItem('pong_hs') || 0;
 }
 
         // 2. Xóa Dữ liệu
@@ -304,7 +357,9 @@ const hubGames = [
     { name: "🐍 Neon Snake (Rắn Săn Mồi)", url: "snake.html" },
     { name: "🚀 Flappy Code (Vượt Tường Lửa)", url: "flappy.html" },
     { name: "🧠 Tech Stack 2048", url: "2048.html" },
-    { name: "💻 Tetris Matrix", url: "tetris.html" }
+    { name: "💻 Tetris Matrix", url: "tetris.html" },
+    { name: "👾 Space Invaders (Bắn Ruồi)", url: "invaders.html" },
+    { name: "🏓 Neon Pong (Hồi Báo)", url: "pong.html" }
 ];
 
 let spinInterval = null;
