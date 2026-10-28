@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Neon Pong - Hồi Báo Tín Hiệu</title>
+    <link rel="stylesheet" href="css/pong.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ HUB</a>
+            <h1>NEON <span>PONG</span></h1>
+        </div>
+        
+        <div class="controls-panel">
+            <div class="score-box">CHUỖI RALLY<br><span id="current-score" class="neon-text">0</span></div>
+            <div class="score-box">KỶ LỤC<br><span id="high-score" class="neon-text">0</span></div>
+        </div>
+
+        <div class="board-container">
+            <canvas id="gameCanvas" width="800" height="450"></canvas>
+            
+            <div id="game-overlay" class="overlay">
+                <h2 id="overlay-title">SYSTEM READY</h2>
+                <p id="overlay-msg">Bảo vệ tường lửa bên trái. Đừng để lọt tín hiệu!</p>
+                <button id="btn-start" onclick="initGame()">▶ PHÁT BÓNG</button>
+            </div>
+        </div>
+        
+        <div class="controls-hint">
+            👆 <b>Di chuyển Chuột</b> lên/xuống hoặc dùng phím <b>[W] / [S]</b> để điều khiển ván trượt.
+        </div>
+    </div>
+    <script src="js/pong.js"></script>
+</body>
+</html>

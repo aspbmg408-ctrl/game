@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invaders - Bắn Ruồi Cổ Điển</title>
+    <link rel="stylesheet" href="css/invaders.css">
+</head>
+<body>
+    <div class="stars-bg"></div>
+
+    <div class="game-wrapper">
+        <div class="header">
+            <a href="index.html" class="btn-back">⬅ HUB</a>
+            <h1>SPACE <span>INVADERS</span></h1>
+        </div>
+        
+        <div class="controls-panel">
+            <div class="score-box">ĐIỂM CHÍNH<br><span id="current-score" class="neon-text">0</span></div>
+            <div class="lives-box">MẠNG: <span id="lives-display">❤️❤️❤️</span></div>
+            <div class="score-box">KỶ LỤC<br><span id="high-score" class="neon-text">0</span></div>
+        </div>
+
+        <div class="board-container">
+            <canvas id="gameCanvas" width="600" height="600"></canvas>
+            
+            <div id="game-overlay" class="overlay">
+                <h2 id="overlay-title">SPACE INVADERS</h2>
+                <p id="overlay-msg">Bảo vệ Trái Đất khỏi quân đoàn xâm lược!</p>
+                <button id="btn-start" onclick="initGame()">▶ KÍCH HOẠT PHI THUYỀN</button>
+            </div>
+        </div>
+        
+        <div class="controls-hint">
+            <b>[A / D]</b> hoặc <b>[Mũi tên Trái / Phải]</b>: Di chuyển | <b>[SPACE]</b>: Bắn đạn
+        </div>
+    </div>
+
+    <script src="js/invaders.js"></script>
+</body>
+</html>
